@@ -1,4 +1,4 @@
-function [M, expData, logliklihood] = GMM_incremental(actData, nbStates, nbData)
+function [M, expData] = GMM_incremental(actData, nbStates, nbData)
  addpath('/Users/zhangchi8620/Codes/GMM-incremental-v2.0');
 % Demonstration of an incremental learning process of Gaussian
 % Mixture Model (GMM) using a direct update method.
@@ -68,7 +68,7 @@ Data = actData;
 
     for i = 1 : size(M,2)
         for idxData = 1 : nbSamples  
-%             fprintf('Model %d, Data 1~%d\n', i, idxData*nbData);
+            printf('Model %d, Data %d', i, idxData*nbData);
             tmp = Data(:,1:idxData*nbData);
             logliklihood(i,idxData) = calLoglik(tmp, M(i).Priors, M(i).Mu, M(i).Sigma, M(i).Pix);
         end

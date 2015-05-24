@@ -79,24 +79,24 @@ expData(1,:) = linspace(1, numFrame, numFrame);
 % 
 % %% Plot of the GMM encoding results
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %plot 1D
-if action == 5
-figure;
-
-idx = reshape(1:nbVar-1,2,[])';
-idx = idx(:);
-
-for n=1:nbVar-1
-% for n=1:3
-%   subplot(3*(nbVar-1),2,4+(n-1)*2+1); hold on;
-  subplot((nbVar-1)/2,2,idx(n)); hold on;
+% %plot 1D % plot in paper
+% if action == 5
 % figure;
-%   hold on;
-  plotGMM(Mu([1,n+1],:), Sigma([1,n+1],[1,n+1],:), [0 .8 0], 1);
-  axis([min(Data(1,:)) max(Data(1,:)) min(Data(n+1,:))-0.01 max(Data(n+1,:))+0.01]);
-  ylabel(['\xi_{' num2str(n) '}'],'fontsize',16);
-end
-end
+% 
+% idx = reshape(1:nbVar-1,2,[])';
+% idx = idx(:);
+% 
+% for n=1:nbVar-1
+% % for n=1:3
+% %   subplot(3*(nbVar-1),2,4+(n-1)*2+1); hold on;
+%   subplot((nbVar-1)/2,2,idx(n)); hold on;
+% % figure;
+% %   hold on;
+%   plotGMM(Mu([1,n+1],:), Sigma([1,n+1],[1,n+1],:), [0 .8 0], 1);
+%   axis([min(Data(1,:)) max(Data(1,:)) min(Data(n+1,:))-0.01 max(Data(n+1,:))+0.01]);
+%   ylabel(['\xi_{' num2str(n) '}'],'fontsize',16);
+% end
+% end
 % %plot 2D
 % % subplot(3*(nbVar-1),2,4+[2:2:2*(nbVar-1)]); hold on;
 % % plotGMM(Mu([2,3],:), Sigma([2,3],[2,3],:), [0 .8 0], 1);

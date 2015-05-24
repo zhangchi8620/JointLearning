@@ -31,8 +31,8 @@ clear;
 % DR: false - no PCA, true - PCA
 path = '../dataset_GMM/';
 global nbStates numFrame selJoint refJoint selBone refBone DR
-nbStates = 10;    
-numFrame = 400;
+nbStates = 15;    
+numFrame = 200;
 DR = false;
 jointMode = 'Nao';
 switch jointMode
@@ -105,7 +105,8 @@ write2txt();
         trainData = assemble(1,16,1,6,1,4, [path,'train'], 'no_comb', 0, jointMode);
         save('trainEachSubject.mat', 'trainData');
     end
-    file = encode(trainData,'train'); 
+    [file, M] = encode(trainData,'train'); 
+    save('Model.mat', 'M');
     addLabel(file, 'train');
     
     if (exist('testEachSubject.mat') ~= 0)

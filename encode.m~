@@ -76,7 +76,6 @@ function [file, M, loglikelihood] = encode(inData, mode)
         loglikelihood(i).data = logtmp;
     end
     
-    save('loglikelihood.mat', 'loglikelihood');
 %         insModel(i).action = inData(i).action;
 %         
 %         m=insModel(i).model;
