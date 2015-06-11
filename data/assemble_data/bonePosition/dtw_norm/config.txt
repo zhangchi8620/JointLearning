@@ -1,5 +1,0 @@
-selJoint: 4	6	8	10	12	14	16	18	20	
-refJoint: 3	5	6	9	10	13	14	17	18	
-# of GMM:	10
-# of Frame:	100
-DR:			0
