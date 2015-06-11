@@ -98,16 +98,16 @@ write2txt();
 
 
     %% Case 2 (individual): individual mode, treat each instance independently
-    disp('Individual mode (no comb in Train and Test)');
-    if (exist('trainEachSubject.mat') ~= 0)
-        load('trainEachSubject.mat');
-    else
-        trainData = assemble(1,16,1,6,1,4, [path,'train'], 'no_comb', 0, jointMode);
-        save('trainEachSubject.mat', 'trainData');
-    end
-    [file, M] = encode(trainData,'train'); 
-    save('Model.mat', 'M');
-    addLabel(file, 'train');
+%     disp('Individual mode (no comb in Train and Test)');
+%     if (exist('trainEachSubject.mat') ~= 0)
+%         load('trainEachSubject.mat');
+%     else
+%         trainData = assemble(1,16,1,6,1,4, [path,'train'], 'no_comb', 0, jointMode);
+%         save('trainEachSubject.mat', 'trainData');
+%     end
+%     [file, M] = encode(trainData,'train'); 
+%     save('Model.mat', 'M');
+%     addLabel(file, 'train');
     
     if (exist('testEachSubject.mat') ~= 0)
         load('testEachSubject.mat');

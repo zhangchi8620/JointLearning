@@ -67,6 +67,7 @@ Data = actData;
     end
 
     for i = 1 : size(M,2)
+        fprintf('\t\t\tModel %d\n', i);        
         for idxData = 1 : nbSamples  
 %             fprintf('Model %d, Data 1~%d\n', i, idxData*nbData);
             tmp = Data(:,1:idxData*nbData);

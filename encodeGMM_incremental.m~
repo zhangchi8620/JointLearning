@@ -1,4 +1,4 @@
-function [result,loglikelihood] = encodeGMM_incremental(Data)
+function [result,log] = encodeGMM_incremental(Data)
     global nbStates numFrame DR
     %align
     % add time to Data
@@ -10,14 +10,17 @@ function [result,loglikelihood] = encodeGMM_incremental(Data)
         fprintf('\t\tfeature(joint): %d\n', i);
         newData = [time; Data(1,:)];
         [M, expData, logtmp] = GMM_incremental(newData, nbStates, numFrame); 
+        model_one_action.feature = i;
+        model_one_action.models = M;
         result = [result;M];
         log(i).data = logtmp;        
+%         log(i).data = mean(logtmp,2);        
 %         feature = [feature,sortFeature(M(end))];        
     end    
-   
-        loglikelihood = log(i)
+        [llh.mean, llh.std] = calMatricsMeanStd(log);
         result = result';
-    
+%         bar3(-llh.mean); 
+%       plot3d_errorbars(-m, -s)
 end
 
 function feature = sortFeature(M)
@@ -59,15 +62,12 @@ end
 %     end
 %     
 % end
-function [m, std] = calMatricsMeanStd(mat)
+function [m, s] = calMatricsMeanStd(mat)
     mat3D = mat(1).data;
-    for i = 2 : size(mat)
-        mat3D = cat(result, mat(i).data);
+    for i = 2 : size(mat,2)
+        mat3D = cat(3, mat3D, mat(i).data);
     end
     
     m = mean(mat3D, 3);
-    std = std()
-end
-function m = catMatrix(mat)
-    
+    s = std(mat3D, [], 3);
 end

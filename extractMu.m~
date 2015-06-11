@@ -1,0 +1,23 @@
+function extractMu()
+    load('M.mat');
+    count=1;
+    
+    [numAction, numFeature] = size(M);
+    for i = 1 : numAction
+        numInstance = size(M(i,1).model);
+        
+        for s = 1 : numInstance
+            for f = 1 : numFeature
+                allins = M(i,f).model;
+                row(count,:) = [row(count), sortMu(allins(s))];
+            end
+        end
+    end
+
+end
+
+function row=sortMuMatrix(mm)
+    for i = 1 : size(mm,2)
+        row=[row,sortMu(mm)];
+    end
+end

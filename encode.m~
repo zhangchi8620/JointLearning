@@ -61,21 +61,33 @@ function [file, M, loglikelihood] = encode(inData, mode)
     % new version: train each joint angle independently. 
     % model matrix: numVideos*numFeature(numJoint)
     
-    M = [];
-    for i = 1 : 16
-        fprintf('\tAction %d \n', i);        
-        datatmp = [];
-        for j = 1 : size(inData, 2)
-            if (inData(j).action == i)
-                datatmp = [datatmp,inData(j).data];
-            end
-            j = j + 1;        
-        end
-        [m, logtmp] = encodeGMM_incremental(datatmp);
-        M = [M; m];
-        loglikelihood(i).data = logtmp;
+%     M = [];
+%     for i = 1 : 2
+%         fprintf('\tAction %d \n', i);        
+%         datatmp = [];
+%         for j = 1 : size(inData, 2)
+%             if (inData(j).action == i)
+%                 datatmp = [datatmp,inData(j).data];
+%             end
+%             j = j + 1;        
+%         end
+%         [model_one_action, logtmp] = encodeGMM_incremental(datatmp);
+%         gmm_action(i).models = model_one_action;
+%         gmm_action(i).action = i;
+%         M = [M; model_one_action];
+%         loglikelihood(i).data = logtmp;
+%     end
+    load gmm_action
+    for i = 1:size(gmm_action,2)       
+       for r = 1: size(gmm_action(i).models,1)
+           x = [];
+           for c = 1 : size(gmm_action(i).models,2)
+                x = [x,sortMu(gmm_action(i).models(r,c))];
+           end
+           x
+       end
     end
-    
+    save('loglikelihood.mat', 'loglikelihood');
 %         insModel(i).action = inData(i).action;
 %         
 %         m=insModel(i).model;

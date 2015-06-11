@@ -1,4 +1,4 @@
-function [result,log] = encodeGMM_incremental(Data)
+function [gmms,log] = encodeGMM_incremental(Data)
     global nbStates numFrame DR
     %align
     % add time to Data
@@ -10,6 +10,7 @@ function [result,log] = encodeGMM_incremental(Data)
         fprintf('\t\tfeature(joint): %d\n', i);
         newData = [time; Data(1,:)];
         [M, expData, logtmp] = GMM_incremental(newData, nbStates, numFrame); 
+        gmms(i).model = M;
         result = [result;M];
         log(i).data = logtmp;        
 %         log(i).data = mean(logtmp,2);        
